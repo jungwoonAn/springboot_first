@@ -14,7 +14,7 @@ import lombok.ToString;
 public class Article {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -23,4 +23,13 @@ public class Article {
     @Column
     private String content;
 
+    // 일부 데이터만 수정하는 메서드("RestAPI PATCH요청시)
+    public void patch(Article article){
+        if(article.title != null){
+            this.title = article.title;
+        }
+        if(article.content != null){
+            this.content = article.content;
+        }
+    }
 }
